@@ -23,40 +23,41 @@ public class Seletor {
     public void setCaminhoPastaResultado(String caminhoPastaResultado) {
         this.caminhoPastaResultado = caminhoPastaResultado;
     }
-    
-    public void selecionarArquivo(){
-        
+
+    public void selecionarArquivo() {
+
         int confirma;
 
         JFileChooser selecionarArquivo = new JFileChooser();
         selecionarArquivo.setDialogTitle("Selecione o arquivo que contem as Matrículas em lote");
 
-	int Selecionado = selecionarArquivo.showOpenDialog(null);
+        int Selecionado = selecionarArquivo.showOpenDialog(null);
 
-	if (Selecionado == JFileChooser.APPROVE_OPTION) {
+        if (Selecionado == JFileChooser.APPROVE_OPTION) {
 
             setArquivoSelecionado(selecionarArquivo.getSelectedFile().getAbsolutePath());
 
-            confirma = JOptionPane.showConfirmDialog(null, "Confirma o Arquivo?\n\nCaminho :\n"+getArquivoSelecionado()+"\n\nCaso seja necessário configurar novamente, click no Botão Selecionar Arquivo.", "Confimação das Configurações", JOptionPane.OK_CANCEL_OPTION);
+            confirma = JOptionPane.showConfirmDialog(null, "Confirma o Arquivo?\n\nCaminho :\n" + getArquivoSelecionado() + "\n\nCaso seja necessário configurar novamente, click no Botão Selecionar Arquivo.", "Confimação das Configurações", JOptionPane.OK_CANCEL_OPTION);
 
-		if (confirma == JOptionPane.CANCEL_OPTION) {
-                    JOptionPane.showMessageDialog(null, "O Arquivo com as Matriculas Não foi selecionado!", "Configuração do Sistema", JOptionPane.ERROR_MESSAGE);
-                    setArquivoSelecionado(".");
+            if (confirma == JOptionPane.CANCEL_OPTION) {
+                JOptionPane.showMessageDialog(null, "O Arquivo com as Matriculas Não foi selecionado!", "Configuração do Sistema", JOptionPane.ERROR_MESSAGE);
+                setArquivoSelecionado(".");
 
-		}else {}
+            } else {
+            }
 
-	}else {
+        } else {
             JOptionPane.showMessageDialog(null, "O Arquivo com as Matriculas Não foi selecionado!", "Configuração do Sistema", JOptionPane.ERROR_MESSAGE);
             setArquivoSelecionado(".");
 
-		}
+        }
     }
-    
-    public void selecionarPasta(){
-        
+
+    public void selecionarPasta() {
+
         int confirma;
-       
-        JFileChooser chooser = new JFileChooser(); 
+
+        JFileChooser chooser = new JFileChooser();
 
         chooser.setCurrentDirectory(new java.io.File("."));
         chooser.setDialogTitle("Selecione o Diretorio de Resultados");
@@ -64,17 +65,17 @@ public class Seletor {
         chooser.setAcceptAllFileFilterUsed(false);
 
         if (chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
-            setCaminhoPastaResultado(String.valueOf(chooser.getSelectedFile())+"\\");
-            confirma = JOptionPane.showConfirmDialog(null, "Confirma as configurações do Diretorio de Resultados?\n\nCaminho do Diretório de Resultados:\n"+getCaminhoPastaResultado()+"\n\nCaso seja necessário configurar novamente, repita o processo.", "Confimação das Configurações de Resultado", JOptionPane.OK_CANCEL_OPTION);
-            
+            setCaminhoPastaResultado(String.valueOf(chooser.getSelectedFile()) + "\\");
+            confirma = JOptionPane.showConfirmDialog(null, "Confirma as configurações do Diretorio de Resultados?\n\nCaminho do Diretório de Resultados:\n" + getCaminhoPastaResultado() + "\n\nCaso seja necessário configurar novamente, repita o processo.", "Confimação das Configurações de Resultado", JOptionPane.OK_CANCEL_OPTION);
+
             if (confirma == JOptionPane.CANCEL_OPTION) {
                 JOptionPane.showMessageDialog(null, "O Diretorio de Resultados Nao foi configurado!", "Configuração do Sistema", JOptionPane.ERROR_MESSAGE);
                 setCaminhoPastaResultado(".");
-                }else {}
-        }
-        else {
+            } else {
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "O Diretorio de Resultados Nao foi configurado!", "Configuração do Sistema", JOptionPane.ERROR_MESSAGE);
             setCaminhoPastaResultado(".");
-            }
         }
+    }
 }

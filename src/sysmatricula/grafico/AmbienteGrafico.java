@@ -9,14 +9,13 @@ import javax.swing.JPanel;
 import sysmatricula.grafico.Seletor;
 import sysmatricula.logica.LerArquivo;
 
-public class AmbienteGrafico extends JFrame{
-    
+public class AmbienteGrafico extends JFrame {
 
-    public AmbienteGrafico(){
-        
+    public AmbienteGrafico() {
+
         setTitle("SysMatricula - XPTO");
-        setSize(640,200);
-        
+        setSize(640, 200);
+
         JButton btSelecionarArquivo = new JButton("Selecionar Arquivo");
         JButton btVerificarMatricula = new JButton("Verificar Matricula");
         JButton btGerarDV = new JButton("Gerar Dígito Verificador");
@@ -24,14 +23,13 @@ public class AmbienteGrafico extends JFrame{
         panel.add(btSelecionarArquivo);
         panel.add(btVerificarMatricula);
         panel.add(btGerarDV);
-        
+
         this.getContentPane().add(panel);
 
         setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
-        btSelecionarArquivo.addActionListener(new ActionListener(){
+
+        btSelecionarArquivo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("botao Selecionar Arquivo");
@@ -43,8 +41,8 @@ public class AmbienteGrafico extends JFrame{
 
             }
         });
-        
-        btVerificarMatricula.addActionListener(new ActionListener(){
+
+        btVerificarMatricula.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("botao Verificar Matricula");
@@ -52,26 +50,20 @@ public class AmbienteGrafico extends JFrame{
                 selecionar.selecionarPasta();
                 System.out.println(selecionar.getCaminhoPastaResultado());
 
-                
             }
         });
 
-
-        btGerarDV.addActionListener(new ActionListener(){
+        btGerarDV.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("botao Gerar Digito Verificador");
                 Seletor selecionar = new Seletor();
                 selecionar.selecionarPasta();
                 System.out.println(selecionar.getCaminhoPastaResultado());
-                
 
             }
         });
-        
-        
-        
+
     }
-    
 
 }
