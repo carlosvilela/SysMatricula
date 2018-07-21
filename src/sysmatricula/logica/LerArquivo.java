@@ -36,23 +36,30 @@ public class LerArquivo {
         setArquivo(arquivoSelecionado);
 
         try {
-            FileReader arquivo = new FileReader(this.arquivo);
-            BufferedReader ler = new BufferedReader(arquivo);
-            System.out.println(this.arquivo.getAbsolutePath());
+            if (this.arquivo.exists()) {
 
-            int i;
-            i = 0;
+                FileReader arquivo = new FileReader(this.arquivo);
+                BufferedReader ler = new BufferedReader(arquivo);
+                System.out.println(this.arquivo.getAbsolutePath());
 
-            this.matricula.add(ler.readLine());
-            while (this.matricula.get(i) != null) {
+                int i;
+                i = 0;
+
                 this.matricula.add(ler.readLine());
+                while (this.matricula.get(i) != null) {
+                    this.matricula.add(ler.readLine());
 
-                System.out.println(this.matricula.get(i));
-                i = i + 1;
+                    System.out.println(this.matricula.get(i));
+                    i = i + 1;
+                }
+
+                this.matricula.remove(i);
+                arquivo.close();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "ERRO FATAL:\nErro na leitura do arquivo.\nhouveram divergencias,\n verifique se o arquivo existe ou se você precisa de prilégios de usuário para acessar a pasta ou arquivo.\n realize a operação novamente para prosseguir com o processo");
+
             }
-
-            this.matricula.remove(i);
-            arquivo.close();
 
         } catch (IOException e) {
             System.out.println(e);
