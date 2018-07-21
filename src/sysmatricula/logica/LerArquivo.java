@@ -9,13 +9,24 @@ import java.util.LinkedList;
 
 public class LerArquivo {
     
-    public LinkedList<String> matricula = new LinkedList<String>();
+    private LinkedList<String> matricula = new LinkedList<String>();
+    private LinkedList<String> matriculaSemDV = new LinkedList<String>();
+    private LinkedList<String> digitoVerificador = new LinkedList<String>();
+
     private File arquivo;
+    
+public String getArquivo() {
+    return arquivo.getAbsolutePath();
+    }
+
+public void setArquivo(String arquivo) {
+        this.arquivo = new File(arquivo);
+    }
+
 
 public void LerArquivoSelecionado(String arquivoSelecionado){
     
     setArquivo(arquivoSelecionado);
-  
  
     try{
         FileReader arquivo = new FileReader(this.arquivo);
@@ -37,17 +48,34 @@ public void LerArquivoSelecionado(String arquivoSelecionado){
     }catch(IOException e){
         System.out.println(e);
     }
-
     
     
-}    
-
-
-    public String getArquivo() {
-        return arquivo.getAbsolutePath();
+    desagregarMatricula(this.matricula);
+    
     }
 
-    public void setArquivo(String arquivo) {
-        this.arquivo = new File(arquivo);
+public void desagregarMatricula (LinkedList<String> matricula){
+    matricula = new LinkedList<String>();
+    matricula = this.matricula;
+    
+    for(int i=0; i<=(matricula.size()-1); i++){
+        System.out.println(">>> "+matricula.get(i));
+        
+        System.out.println(">>>numChar "+matricula.get(i).length());
+
+        for(int j=0; j<=(matricula.get(i).length()-1); j++){
+        System.out.println("//"+matricula.get(i).charAt(j)+"//");
+            
+        }
+        
+        
+        
     }
+    
+    
+}
+
+
+
+
 }
