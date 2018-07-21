@@ -23,6 +23,14 @@ public class LerArquivo {
         return digitoVerificador;
     }
 
+        public void setMatriculaSemDV(LinkedList<String> matriculaSemDV) {
+        this.matriculaSemDV = matriculaSemDV;
+    }
+
+    public void setDigitoVerificador(LinkedList<String> digitoVerificador) {
+        this.digitoVerificador = digitoVerificador;
+    }
+
     public String getArquivo() {
         return arquivo.getAbsolutePath();
     }
