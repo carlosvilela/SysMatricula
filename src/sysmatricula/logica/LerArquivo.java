@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 public class LerArquivo {
 
@@ -65,6 +66,7 @@ public class LerArquivo {
         String dV = "-";
         Integer indexDV;
         Boolean bFlagDV;
+        Boolean bERR;
 
         matricula = new LinkedList<String>();
         matricula = this.matricula;
@@ -81,6 +83,7 @@ public class LerArquivo {
             caracteresComDV = new String();
             indexDV = 0;
             bFlagDV = false;
+            bERR = false;
 
             for (int j = 0; j <= (matricula.get(i).length() - 1); j++) {
                 System.out.println("//" + matricula.get(i).charAt(j) + "//");
@@ -140,6 +143,9 @@ public class LerArquivo {
                             System.out.println("achou Digito Verificador; indexDV = " + indexDV);
                             System.out.println("achou Digito Verificador; = " + bFlagDV);
                             break;
+
+                        default:
+                            bERR = true;
                     }
                 } else {
 
@@ -216,24 +222,32 @@ public class LerArquivo {
                         case ('F'):
                             caracteresComDV = caracteresComDV + 'F';
                             break;
+
+                        default:
+                            bERR = true;
                     }
                 }
 
                 System.out.println("caracteresSemDV -> " + caracteresSemDV);
                 System.out.println("caracteresComDV -> " + caracteresComDV);
-
             }
 
-            if (!caracteresSemDV.isEmpty() && caracteresComDV.isEmpty()) {
-                matriculaSemDV.add(caracteresSemDV);
-                digitoVerificador.add("");
+            if (bERR == true) {
+                JOptionPane.showMessageDialog(null, "Houve ERRO de Sintaxe,\n a matrícula \" " + matricula.get(i) + " \" não será analisada.\n Click em OK para continuar o Processo.");
+
             } else {
-                if (caracteresSemDV.isEmpty() && !caracteresComDV.isEmpty()) {
-                    matriculaSemDV.add("");
-                    digitoVerificador.add(caracteresComDV);
-                } else {
+
+                if (!caracteresSemDV.isEmpty() && caracteresComDV.isEmpty()) {
                     matriculaSemDV.add(caracteresSemDV);
-                    digitoVerificador.add(caracteresComDV);
+                    digitoVerificador.add("");
+                } else {
+                    if (caracteresSemDV.isEmpty() && !caracteresComDV.isEmpty()) {
+                        matriculaSemDV.add("");
+                        digitoVerificador.add(caracteresComDV);
+                    } else {
+                        matriculaSemDV.add(caracteresSemDV);
+                        digitoVerificador.add(caracteresComDV);
+                    }
                 }
             }
 
