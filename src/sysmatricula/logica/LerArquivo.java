@@ -31,8 +31,7 @@ public void LerArquivoSelecionado(String arquivoSelecionado){
         i=i+1;
         }
         this.matricula.remove(i);
-        
-       
+
         arquivo.close();
 
     }catch(IOException e){
