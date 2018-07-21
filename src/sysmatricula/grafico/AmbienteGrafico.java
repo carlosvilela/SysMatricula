@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import sysmatricula.grafico.Seletor;
+
 public class AmbienteGrafico extends JFrame{
     
 
@@ -32,6 +34,10 @@ public class AmbienteGrafico extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("botao Selecionar Arquivo");
+                Seletor selecionar = new Seletor();
+                selecionar.selecionarArquivo();
+                System.out.println(selecionar.getArquivoSelecionado());
+
             }
         });
         
@@ -39,6 +45,11 @@ public class AmbienteGrafico extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("botao Verificar Matricula");
+                Seletor selecionar = new Seletor();
+                selecionar.selecionarPasta();
+                System.out.println(selecionar.getCaminhoPastaResultado());
+
+                
             }
         });
 
@@ -47,6 +58,11 @@ public class AmbienteGrafico extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("botao Gerar Digito Verificador");
+                Seletor selecionar = new Seletor();
+                selecionar.selecionarPasta();
+                System.out.println(selecionar.getCaminhoPastaResultado());
+                
+
             }
         });
         
