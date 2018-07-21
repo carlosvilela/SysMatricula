@@ -5,25 +5,35 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 public class Verificador extends LerArquivo {
+    
+    LinkedList<Integer> calcDV = new LinkedList<Integer>();
+    LinkedList<Integer> rascunhoCalcDV = new LinkedList<Integer>();
+    LinkedList<String> digitoVerificadorCalculado = new LinkedList<String>();
 
     public Boolean verificarArquivo(String arquivo) {
         LinkedList<String> matriculaSemDV = new LinkedList<String>();
         LinkedList<String> digitoVerificador = new LinkedList<String>();
-        
+
         LerArquivoSelecionado(arquivo);
         matriculaSemDV = getMatriculaSemDV();
         digitoVerificador = getDigitoVerificador();
-        
-        System.out.println("matriculaSemDV ->> "+matriculaSemDV.toString());
-        System.out.println("digitoVerificador ->> "+digitoVerificador.toString());
-        
-        if (matriculaSemDV.size() == digitoVerificador.size()){
+
+        System.out.println("matriculaSemDV ->> " + matriculaSemDV.toString());
+        System.out.println("digitoVerificador ->> " + digitoVerificador.toString());
+
+        if (matriculaSemDV.size() == digitoVerificador.size()) {
             return true;
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "ERRO FATAL:\nErro na leitura do arquivo.\nhouve inconsistencia de dados, entre em contato com o Desenvolvedor");
             return false;
-            
+
         }
+    }
+    
+    public void calcularDV (){
+        
+        
+        
         
     }
 
