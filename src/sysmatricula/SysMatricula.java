@@ -1,21 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sysmatricula;
 
-/**
- *
- * @author desktop
- */
-public class SysMatricula {
+import sysmatricula.grafico.AmbienteGrafico;
 
-    /**
-     * @param args the command line arguments
-     */
+public class SysMatricula extends AmbienteGrafico {
+
     public static void main(String[] args) {
-        // TODO code application logic here
+        AmbienteGrafico exibir = new AmbienteGrafico();
     }
     
 }
