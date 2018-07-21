@@ -57,7 +57,8 @@ public void LerArquivoSelecionado(String arquivoSelecionado){
 public void desagregarMatricula (LinkedList<String> matricula){
     
     String dV = "-";
-    Integer flagDV;
+    Integer indexDV;
+    Boolean bFlagDV;
     
     matricula = new LinkedList<String>();
     matricula = this.matricula;
@@ -72,7 +73,8 @@ public void desagregarMatricula (LinkedList<String> matricula){
         
         caracteresSemDV= new String();
         caracteresComDV= new String();
-        flagDV = 0;
+        indexDV = 0;
+        bFlagDV = false;
 
         for(int j=0; j<=(matricula.get(i).length()-1); j++){
             System.out.println("//"+matricula.get(i).charAt(j)+"//");
@@ -81,8 +83,10 @@ public void desagregarMatricula (LinkedList<String> matricula){
     
         //Preencher matriculaSemDV
         System.out.println("j -> "+j);
-        System.out.println("flagDV -> "+flagDV);
-        if(j>=flagDV){
+        System.out.println("indexDV -> "+indexDV);
+        System.out.println("achou Digito Verificador; = "+bFlagDV);
+
+        if(bFlagDV==false){
         
             
         switch (matricula.get(i).charAt(j)){
@@ -129,8 +133,10 @@ public void desagregarMatricula (LinkedList<String> matricula){
                 break;
 
             case('-'):
-                flagDV=j+2;
-                System.out.println("achou Digito Verificador; j ="+j);
+                indexDV=j;
+                bFlagDV = true;
+                System.out.println("achou Digito Verificador; indexDV = "+indexDV);
+                System.out.println("achou Digito Verificador; = "+bFlagDV);
 
                 break;
 
@@ -146,89 +152,73 @@ public void desagregarMatricula (LinkedList<String> matricula){
             
             case('0'):
                 caracteresComDV = caracteresComDV+'0';
-                flagDV=flagDV+1;
                break;
                 
             case('1'):
                 caracteresComDV = caracteresComDV+'1';
-                flagDV=flagDV+1;
                 break;
 
                                 
             case('2'):
                 caracteresComDV = caracteresComDV+'2';
-                flagDV=flagDV+1;
                 break;
                 
             case('3'):
                 caracteresComDV = caracteresComDV+'3';
-                flagDV=flagDV+1;
                 break;
                 
             case('4'):
                 caracteresComDV = caracteresComDV+'4';
-                flagDV=flagDV+1;
                 break;
                 
             case('5'):
                 caracteresComDV = caracteresComDV+'5';
-                flagDV=flagDV+1;
                 break;
                 
             case('6'):
                 caracteresComDV = caracteresComDV+'6';
-                flagDV=flagDV+1;
                 break;
                 
             case('7'):
                 caracteresComDV = caracteresComDV+'7';
-                flagDV=flagDV+1;
                 break;
                                 
             case('8'):
                 caracteresComDV = caracteresComDV+'8';
-                flagDV=flagDV+1;
                 break;
                 
             case('9'):
                 caracteresComDV = caracteresComDV+'9';
-                flagDV=flagDV+1;
                 break;
 
             case('a'):
             case('A'):
                 caracteresComDV = caracteresComDV+'A';
-                flagDV=flagDV+1;
                 break;
 
             case('b'):
             case('B'):
                 caracteresComDV = caracteresComDV+'B';
-                flagDV=flagDV+1;
                 break;
 
             case('c'):
             case('C'):
                 caracteresComDV = caracteresComDV+'C';
-                flagDV=flagDV+1;
                 break;
 
             case('d'):
             case('D'):
                 caracteresComDV = caracteresComDV+'D';
-                flagDV=flagDV+1;
                 break;
  
             case('e'):
             case('E'):
                 caracteresComDV = caracteresComDV+'E';
-                flagDV=flagDV+1;
                 break;
 
             case('f'):
             case('F'):
                 caracteresComDV = caracteresComDV+'F';
-                flagDV=flagDV+1;
                 break;
                 
 
@@ -242,18 +232,25 @@ public void desagregarMatricula (LinkedList<String> matricula){
         System.out.println("caracteresComDV -> "+caracteresComDV);
         
         }
-
-        if(!caracteresSemDV.isEmpty()){
-        matriculaSemDV.add(caracteresSemDV);
-        }
-
-        if(!caracteresComDV.isEmpty()){
-        digitoVerificador.add(caracteresComDV);
-        }
         
-//        System.out.println("matriculaSemDV["+i+"] = "+matriculaSemDV.get(i));
-//        System.out.println("digitoVerificador["+i+"] = "+digitoVerificador.get(i));
-        System.out.println("flagDV = "+flagDV);
+        if(!caracteresSemDV.isEmpty() && caracteresComDV.isEmpty()){
+            matriculaSemDV.add(caracteresSemDV);
+            digitoVerificador.add("");
+        }else{
+            if(caracteresSemDV.isEmpty() && !caracteresComDV.isEmpty()){
+            matriculaSemDV.add("");
+            digitoVerificador.add(caracteresComDV);
+            }else{
+            matriculaSemDV.add(caracteresSemDV);
+            digitoVerificador.add(caracteresComDV);
+            }
+
+            
+        }
+
+        
+        System.out.println("matriculaSemDV[] = "+matriculaSemDV.toString());
+        System.out.println("digitoVerificador[] = "+digitoVerificador.toString());
 
         
     }
