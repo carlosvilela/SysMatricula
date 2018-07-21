@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import sysmatricula.grafico.Seletor;
+import sysmatricula.logica.LerArquivo;
 
 public class AmbienteGrafico extends JFrame{
     
@@ -37,6 +38,8 @@ public class AmbienteGrafico extends JFrame{
                 Seletor selecionar = new Seletor();
                 selecionar.selecionarArquivo();
                 System.out.println(selecionar.getArquivoSelecionado());
+                LerArquivo carregarArquivo = new LerArquivo();
+                carregarArquivo.LerArquivoSelecionado(selecionar.getArquivoSelecionado());
 
             }
         });
