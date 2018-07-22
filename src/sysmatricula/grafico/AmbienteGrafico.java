@@ -2,6 +2,9 @@ package sysmatricula.grafico;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,11 +14,14 @@ import sysmatricula.grafico.*;
 import sysmatricula.logica.*;
 
 public class AmbienteGrafico extends JFrame {
-    
+
     public LinkedList<String> matriculaPura = new LinkedList<String>();
     public LinkedList<String> digitoPuro = new LinkedList<String>();
+    public LinkedList<String> matriculaAgregada = new LinkedList<String>();
+    public LinkedList<String> matriculaGerada = new LinkedList<String>();
+    public LinkedList<String> matriculaGravada = new LinkedList<String>();
+
     public String pastaResultado;
-    
 
     public AmbienteGrafico() {
 
@@ -42,22 +48,19 @@ public class AmbienteGrafico extends JFrame {
                 Seletor selecionar = new Seletor();
                 selecionar.selecionarArquivo();
                 System.out.println(selecionar.getArquivoSelecionado());
-                
+
                 Verificador arquivo = new Verificador();
                 arquivo.verificarArquivo(selecionar.getArquivoSelecionado());
-                
+
                 matriculaPura = arquivo.getMatriculaSemDV();
                 digitoPuro = arquivo.getDigitoVerificador();
-                
-                
-                CalcularDigitoVerificador calc = new CalcularDigitoVerificador();
-                System.out.println("getMatriculaSemDV --------- "+arquivo.getMatriculaSemDV().toString());
-                calc.calcularDV(matriculaPura);
+                matriculaAgregada = arquivo.getMatricula();
+
 
             }
         });
+            btVerificarMatricula.addActionListener(new ActionListener() {
 
-        btVerificarMatricula.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("botao Verificar Matricula");
@@ -65,6 +68,37 @@ public class AmbienteGrafico extends JFrame {
                 selecionar.selecionarPasta();
                 pastaResultado = selecionar.getCaminhoPastaResultado();
                 System.out.println(pastaResultado);
+
+                CalcularDigitoVerificador calc = new CalcularDigitoVerificador();
+
+                System.out.println("getMatriculaSemDV --------- " + matriculaPura.toString());
+                digitoPuro = calc.calcularDV(matriculaPura);
+                
+                System.out.println("Matricula --------- " + matriculaAgregada.toString());
+                                
+
+                
+                String gravar;
+                for (int i = 0; i <= (matriculaAgregada.size() - 1); i++) {
+                    gravar = (matriculaPura.get(i) + "-" + digitoPuro.get(i));
+                        System.out.println("gravar -> "+gravar);
+                    matriculaGerada.add(gravar);
+                        System.out.println("Matricula Gerada -> "+matriculaGerada.toString());
+
+                    if (matriculaGerada.get(i).equals(matriculaAgregada.get(i))) {
+                        matriculaGravada.add((matriculaAgregada.get(i) + " verdadeiro"));
+                    } else {
+                        gravar = (matriculaAgregada.get(i) + " falso");
+                        System.out.println("gravar -> "+gravar);
+
+                        matriculaGravada.add(gravar);
+                    }
+                }
+
+               
+
+System.out.println("Matricula gerada para gravar -> "+matriculaGravada.toString());
+               
 
             }
         });
