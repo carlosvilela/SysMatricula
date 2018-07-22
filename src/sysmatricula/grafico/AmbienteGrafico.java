@@ -46,7 +46,7 @@ public class AmbienteGrafico extends JFrame {
                 calc.calcularDV(arquivo.getMatriculaSemDV());
                 
                 Calculo calcular = new Calculo();
-                calcular.convertDecimalParaHexadecimal(65535);
+                calcular.convertDecimalParaHexadecimal(12412);
                 
 
             }
