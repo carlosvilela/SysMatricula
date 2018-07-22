@@ -15,7 +15,7 @@ public class LerArquivo {
     private LinkedList<String> digitoVerificador = new LinkedList<String>();
     private File arquivo;
 
-    public LinkedList<String> getMatriculaSemDV() {
+    public  LinkedList<String> getMatriculaSemDV() {
         return matriculaSemDV;
     }
 
