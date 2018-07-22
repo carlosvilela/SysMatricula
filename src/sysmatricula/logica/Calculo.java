@@ -1,41 +1,60 @@
+//+------------------------------------------------------------------+
+//|                                                SysMatricula.java |
+//|                           Copyright 2018, Carlos Bezerra Vilela. |
+//|                     https://github.com/carlosvilela/SysMatricula |
+//+------------------------------------------------------------------+
+
+//+------------------------------------------------------------------+
+//| pacote/diretório da Classe                                       |
+//+------------------------------------------------------------------+
 package sysmatricula.logica;
 
+//+------------------------------------------------------------------+
+//| Bibliotecas Necessárias                                          |
+//+------------------------------------------------------------------+
 import java.util.LinkedList;
 
+//+------------------------------------------------------------------+
+//| Classe Calculo                                              |
+//+------------------------------------------------------------------+
 public class Calculo {
 
-    public Calculo() {
+ //+ Método Construtor 
+   public Calculo() {
 
     }
 
+//+ Método convertDecimalParaHexadecimal 
     public String convertDecimalParaHexadecimal(Integer valor) {
+ 
+//+ Realiza a conversão de Decimal para Hexadecimal
         String resultado = "";
         LinkedList<Integer> restoDivisao = new LinkedList<Integer>();
         Integer resultadoDivisao = 0;
-        System.out.println("Convertendo para Hexadecimal -> valor em decimal = " + valor);
+        //System.out.println("Convertendo para Hexadecimal -> valor em decimal = " + valor);
 
         resultadoDivisao = valor / 16;
 
         if (resultadoDivisao >= 16) {
-            System.out.println("Convertendo para Hexadecimal -> resultadoDivisao = " + valor);
+            //System.out.println("Convertendo para Hexadecimal -> resultadoDivisao = " + valor);
             restoDivisao.add((valor % 16));
-            System.out.println("Convertendo para Hexadecimal -> restoDivisao = " + restoDivisao.toString());
+            //System.out.println("Convertendo para Hexadecimal -> restoDivisao = " + restoDivisao.toString());
             valor = resultadoDivisao;
-            System.out.println("Convertendo para Hexadecimal -> valor em decimal = " + valor);
+            //System.out.println("Convertendo para Hexadecimal -> valor em decimal = " + valor);
 
             while (resultadoDivisao >= 16) {
 
                 resultadoDivisao = valor / 16;
-                System.out.println("Convertendo para Hexadecimal -> resultadoDivisao = " + valor);
+                //System.out.println("Convertendo para Hexadecimal -> resultadoDivisao = " + valor);
                 restoDivisao.add((valor % 16));
-                System.out.println("Convertendo para Hexadecimal -> restoDivisao = " + restoDivisao.toString());
+                //System.out.println("Convertendo para Hexadecimal -> restoDivisao = " + restoDivisao.toString());
                 valor = resultadoDivisao;
-                System.out.println("Convertendo para Hexadecimal -> valor em decimal = " + valor);
+                //System.out.println("Convertendo para Hexadecimal -> valor em decimal = " + valor);
             }
 
         }
         restoDivisao.add((valor));
-        System.out.println("Convertendo para Hexadecimal -> restoDivisao fINAL = " + restoDivisao.toString());
+        //System.out.println("Convertendo para Hexadecimal -> restoDivisao fINAL = " + restoDivisao.toString());
 
         for (int i = (restoDivisao.size() - 1); i >= 0; i--) {
 
@@ -72,9 +91,10 @@ public class Calculo {
             }
 
         }
-        System.out.println("Convertendo para Hexadecimal -> RESULTADO = " + resultado);
+        //System.out.println("Convertendo para Hexadecimal -> RESULTADO = " + resultado);
         return resultado;
 
     }
 
 }
+//+------------------------------------------------------------------+
