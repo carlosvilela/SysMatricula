@@ -2,7 +2,7 @@ package sysmatricula.logica;
 
 import java.util.LinkedList;
 
-public class calcularDigitoVerificador extends LerArquivo {
+public class CalcularDigitoVerificador extends LerArquivo {
 
     public Integer calcDV;
     private LinkedList<Integer> rascunhoDigitoVerificador = new LinkedList<Integer>();
