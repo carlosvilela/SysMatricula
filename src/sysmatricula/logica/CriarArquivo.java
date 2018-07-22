@@ -30,6 +30,7 @@ if(!gerarArquivo.exists()){
 
         } catch (Exception e) {
             System.out.println("ERRO: " + e);
+         JOptionPane.showMessageDialog(null, "ERRO: Não foi possivel criar o arquivo.\n"+nomeArquivo+"\nVerifique seus privilégios de usuário.");
         }
 }else{
          JOptionPane.showMessageDialog(null, "ERRO: Não foi possível gerar o arquivo, pois ele já existe na pasta.\n"+nomeArquivo);
