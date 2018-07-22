@@ -37,8 +37,8 @@ public class AmbienteGrafico extends JFrame {
                 selecionar.selecionarArquivo();
                 System.out.println(selecionar.getArquivoSelecionado());
                 
-                Verificador carregarArquivo = new Verificador();
-                carregarArquivo.verificarArquivo(selecionar.getArquivoSelecionado());
+                Verificador arquivo = new Verificador();
+                arquivo.verificarArquivo(selecionar.getArquivoSelecionado());
 
             }
         });
