@@ -1,5 +1,17 @@
+//+------------------------------------------------------------------+
+//|                                             AmbienteGrafico.java |
+//|                           Copyright 2018, Carlos Bezerra Vilela. |
+//|                     https://github.com/carlosvilela/SysMatricula |
+//+------------------------------------------------------------------+
+
+//+------------------------------------------------------------------+
+//| pacote/diretório da Classe                                       |
+//+------------------------------------------------------------------+
 package sysmatricula.grafico;
 
+//+------------------------------------------------------------------+
+//| Bibliotecas Necessárias                                          |
+//+------------------------------------------------------------------+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
@@ -10,23 +22,29 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import sysmatricula.grafico.*;
 import sysmatricula.logica.*;
 
+//+------------------------------------------------------------------+
+//| Classe AmbienteGrafico                                           |
+//+------------------------------------------------------------------+
 public class AmbienteGrafico extends JFrame {
+    
+    
+//+ Função Atributos 
+    private LinkedList<String> matriculaPura = new LinkedList<String>();
+    private LinkedList<String> digitoPuro = new LinkedList<String>();
+    private LinkedList<String> matriculaAgregada = new LinkedList<String>();
+    private LinkedList<String> digitoGerado = new LinkedList<String>();
+    private LinkedList<String> matriculaGerada = new LinkedList<String>();
+    private String gravar;
+    private String pastaResultado;
+    private Boolean flagBtn;
 
-    public LinkedList<String> matriculaPura = new LinkedList<String>();
-    public LinkedList<String> digitoPuro = new LinkedList<String>();
-    public LinkedList<String> matriculaAgregada = new LinkedList<String>();
-    public LinkedList<String> digitoGerado = new LinkedList<String>();
-    public LinkedList<String> matriculaGerada = new LinkedList<String>();
-    public String gravar;
-    public String pastaResultado;
-    public Boolean flagBtn;
-
+//+ Método Construtor 
     public AmbienteGrafico() {
 
+//+ Criar Janela com os componentes básicos 
         flagBtn = false;
 
         setTitle("SysMatricula - XPTO");
@@ -45,13 +63,17 @@ public class AmbienteGrafico extends JFrame {
         setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+//+ Ações dos Botões (btSelecionarArquivo)
         btSelecionarArquivo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("botao Selecionar Arquivo");
+
+//+ Verificar Integridade dos arquivos e exportar conteúdo para posterior uso
+
+                //System.out.println("botao Selecionar Arquivo");
                 Seletor selecionar = new Seletor();
                 selecionar.selecionarArquivo();
-                System.out.println(selecionar.getArquivoSelecionado());
+                //System.out.println(selecionar.getArquivoSelecionado());
 
                 Verificador arquivo = new Verificador();
                 arquivo.verificarArquivo(selecionar.getArquivoSelecionado());
@@ -71,31 +93,36 @@ public class AmbienteGrafico extends JFrame {
                     matriculaAgregada.add(gravar);
                 }
 
-                System.out.println("Matricula Agregada ===> " + matriculaAgregada.toString());
+                //System.out.println("Matricula Agregada ===> " + matriculaAgregada.toString());
 
-                flagBtn = true;
+                flagBtn = true; //flag que indica se o botão de selecionar arquivo foi executado
 
             }
         });
+        
+//+ Ações dos Botões (btVerificarMatricula)
         btVerificarMatricula.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("botao Verificar Matricula");
-                if (flagBtn == true) {
+
+//+ Selecionar pasta onde será gerado o arquivo de resultado
+                //System.out.println("botao Verificar Matricula");
+                if (flagBtn == true) { //flag que indica se o botão de selecionar arquivo foi executado
 
                     Seletor selecionar = new Seletor();
                     selecionar.selecionarPasta();
                     pastaResultado = selecionar.getCaminhoPastaResultado();
-                    System.out.println(pastaResultado);
+                    //System.out.println(pastaResultado);
 
-                    System.out.println("getMatriculaSemDV --------- " + matriculaPura.toString());
+                    //System.out.println("getMatriculaSemDV --------- " + matriculaPura.toString());
 
+//+ calcular Dígito Verificador e comparar se o D.V. está correto
                     CalcularDigitoVerificador calc = new CalcularDigitoVerificador();
                     digitoGerado = calc.calcularDV(matriculaPura);
 
-                    System.out.println("Digito Gerado -> " + digitoGerado.toString());
-                    System.out.println("Digito Puro -> " + digitoPuro.toString());
+                    //System.out.println("Digito Gerado -> " + digitoGerado.toString());
+                    //System.out.println("Digito Puro -> " + digitoPuro.toString());
 
                     matriculaGerada.clear();
                     gravar = "";
@@ -111,8 +138,9 @@ public class AmbienteGrafico extends JFrame {
                         }
                     }
 
-                    System.out.println("Matricula Gerada -> " + matriculaGerada.toString());
+                    //System.out.println("Matricula Gerada -> " + matriculaGerada.toString());
 
+                    //+ Gerar Resultado em arquivo
                     CriarArquivo gravando = new CriarArquivo(pastaResultado + "matriculasVerificadas.txt", matriculaGerada);
 
                 } else {
@@ -123,24 +151,27 @@ public class AmbienteGrafico extends JFrame {
             }
         });
 
+//+ Ações dos Botões (btGerarDV)
         btGerarDV.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                System.out.println("botao Gerar Digito Verificador");
+//+ Selecionar pasta onde será gerado o arquivo de resultado
+                //System.out.println("botao Gerar Digito Verificador");
 
-                if (flagBtn == true) {
+                if (flagBtn == true) { //flag que indica se o botão de selecionar arquivo foi executado
                     Seletor selecionar = new Seletor();
                     selecionar.selecionarPasta();
                     pastaResultado = selecionar.getCaminhoPastaResultado();
-                    System.out.println(pastaResultado);
+                    //System.out.println(pastaResultado);
 
-                    System.out.println("getMatriculaSemDV --------- " + matriculaPura.toString());
+                    //System.out.println("getMatriculaSemDV --------- " + matriculaPura.toString());
 
+//+ Calcular e gerar Dígito. Verificador
                     CalcularDigitoVerificador calc = new CalcularDigitoVerificador();
                     digitoGerado = calc.calcularDV(matriculaPura);
 
-                    System.out.println("Digito Gerado -> " + digitoGerado.toString());
+                    //System.out.println("Digito Gerado -> " + digitoGerado.toString());
 
                     matriculaGerada.clear();
                     gravar = "";
@@ -152,8 +183,9 @@ public class AmbienteGrafico extends JFrame {
                         }
                     }
 
-                    System.out.println("Matricula Gerada -> " + matriculaGerada.toString());
+                    //System.out.println("Matricula Gerada -> " + matriculaGerada.toString());
 
+                    //+ Gerar Resultado em arquivo
                     CriarArquivo gravando = new CriarArquivo(pastaResultado + "matriculasComDV.txt", matriculaGerada);
 
                 } else {
@@ -167,3 +199,4 @@ public class AmbienteGrafico extends JFrame {
     }
 
 }
+//+------------------------------------------------------------------+
