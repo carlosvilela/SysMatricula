@@ -121,11 +121,20 @@ public class AmbienteGrafico extends JFrame {
         btGerarDV.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 System.out.println("botao Gerar Digito Verificador");
+
+                if (flagBtn == true) {
+
                 Seletor selecionar = new Seletor();
                 selecionar.selecionarPasta();
                 pastaResultado = selecionar.getCaminhoPastaResultado();
                 System.out.println(pastaResultado);
+                
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERRO: O arquivo ainda não foi selecionado.\nClick no Botão Selecionar Arquivo.");
+
+                }
 
             }
         });
