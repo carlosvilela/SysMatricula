@@ -1,13 +1,30 @@
+//+------------------------------------------------------------------+
+//|                                                     Seletor.java |
+//|                           Copyright 2018, Carlos Bezerra Vilela. |
+//|                     https://github.com/carlosvilela/SysMatricula |
+//+------------------------------------------------------------------+
+
+//+------------------------------------------------------------------+
+//| pacote/diretório da Classe                                       |
+//+------------------------------------------------------------------+
 package sysmatricula.grafico;
 
+//+------------------------------------------------------------------+
+//| Bibliotecas Necessárias                                          |
+//+------------------------------------------------------------------+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+//+------------------------------------------------------------------+
+//| Classe Seletor                                                   |
+//+------------------------------------------------------------------+
 public class Seletor {
 
+//+ Atributos 
     private String arquivoSelecionado = ".";
     private String caminhoPastaResultado = ".";
 
+//+ Métodos Set e Get 
     public String getArquivoSelecionado() {
         return arquivoSelecionado;
     }
@@ -24,8 +41,10 @@ public class Seletor {
         this.caminhoPastaResultado = caminhoPastaResultado;
     }
 
+//+ Método selecionarArquivo     
     public void selecionarArquivo() {
 
+//+ Janela para selecionar o arquivo desejado     
         int confirma;
 
         JFileChooser selecionarArquivo = new JFileChooser();
@@ -53,8 +72,10 @@ public class Seletor {
         }
     }
 
+//+ Método selecionarPasta     
     public void selecionarPasta() {
 
+//+ Janela para selecionar a Pasta onde serão gravados os arquivos de Resultado      
         int confirma;
 
         JFileChooser chooser = new JFileChooser();
@@ -79,3 +100,4 @@ public class Seletor {
         }
     }
 }
+//+------------------------------------------------------------------+

@@ -31,7 +31,7 @@ import sysmatricula.logica.*;
 public class AmbienteGrafico extends JFrame {
     
     
-//+ Função Atributos 
+//+ Atributos 
     private LinkedList<String> matriculaPura = new LinkedList<String>();
     private LinkedList<String> digitoPuro = new LinkedList<String>();
     private LinkedList<String> matriculaAgregada = new LinkedList<String>();
