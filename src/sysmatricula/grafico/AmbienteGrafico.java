@@ -82,33 +82,12 @@ public class AmbienteGrafico extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("botao Verificar Matricula");
-
                 if (flagBtn == true) {
+
                     Seletor selecionar = new Seletor();
                     selecionar.selecionarPasta();
                     pastaResultado = selecionar.getCaminhoPastaResultado();
                     System.out.println(pastaResultado);
-
-                    System.out.println("getMatriculaSemDV --------- " + matriculaPura.toString());
-                    
-                    CalcularDigitoVerificador calc = new CalcularDigitoVerificador();
-                    digitoGerado = calc.calcularDV(matriculaPura);
-                    
-                    System.out.println("Digito Gerado -> " + digitoGerado.toString());
-                    
-                    matriculaGerada.clear();
-                    gravar = "";
-                    for(int i=0; i<= (matriculaPura.size()-1);i++){
-                        
-                        if(digitoPuro.get(i).isEmpty()){
-                            gravar = matriculaPura.get(i)+"-"+digitoGerado.get(i);
-                            matriculaGerada.add(gravar);
-                        }
-                    }
-
-                    System.out.println("Matricula Gerada -> " + matriculaGerada.toString());
-                    
-                    CriarArquivo gravando = new CriarArquivo(pastaResultado+"matriculasComDV.txt", matriculaGerada);
 
                 } else {
                     JOptionPane.showMessageDialog(null, "ERRO: O arquivo ainda não foi selecionado.\nClick no Botão Selecionar Arquivo.");
@@ -121,16 +100,36 @@ public class AmbienteGrafico extends JFrame {
         btGerarDV.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 System.out.println("botao Gerar Digito Verificador");
 
                 if (flagBtn == true) {
+                    Seletor selecionar = new Seletor();
+                    selecionar.selecionarPasta();
+                    pastaResultado = selecionar.getCaminhoPastaResultado();
+                    System.out.println(pastaResultado);
 
-                Seletor selecionar = new Seletor();
-                selecionar.selecionarPasta();
-                pastaResultado = selecionar.getCaminhoPastaResultado();
-                System.out.println(pastaResultado);
-                
+                    System.out.println("getMatriculaSemDV --------- " + matriculaPura.toString());
+
+                    CalcularDigitoVerificador calc = new CalcularDigitoVerificador();
+                    digitoGerado = calc.calcularDV(matriculaPura);
+
+                    System.out.println("Digito Gerado -> " + digitoGerado.toString());
+
+                    matriculaGerada.clear();
+                    gravar = "";
+                    for (int i = 0; i <= (matriculaPura.size() - 1); i++) {
+
+                        if (digitoPuro.get(i).isEmpty()) {
+                            gravar = matriculaPura.get(i) + "-" + digitoGerado.get(i);
+                            matriculaGerada.add(gravar);
+                        }
+                    }
+
+                    System.out.println("Matricula Gerada -> " + matriculaGerada.toString());
+
+                    CriarArquivo gravando = new CriarArquivo(pastaResultado + "matriculasComDV.txt", matriculaGerada);
+
                 } else {
                     JOptionPane.showMessageDialog(null, "ERRO: O arquivo ainda não foi selecionado.\nClick no Botão Selecionar Arquivo.");
 
