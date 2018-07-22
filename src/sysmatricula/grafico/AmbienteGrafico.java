@@ -108,6 +108,7 @@ public class AmbienteGrafico extends JFrame {
 
                     System.out.println("Matricula Gerada -> " + matriculaGerada.toString());
                     
+                    CriarArquivo gravando = new CriarArquivo(pastaResultado+"matriculasComDV.txt", matriculaGerada);
 
                 } else {
                     JOptionPane.showMessageDialog(null, "ERRO: O arquivo ainda não foi selecionado.\nClick no Botão Selecionar Arquivo.");
