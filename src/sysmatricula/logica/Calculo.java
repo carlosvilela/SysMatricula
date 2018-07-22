@@ -1,5 +1,5 @@
 //+------------------------------------------------------------------+
-//|                                                SysMatricula.java |
+//|                                                     Calculo.java |
 //|                           Copyright 2018, Carlos Bezerra Vilela. |
 //|                     https://github.com/carlosvilela/SysMatricula |
 //+------------------------------------------------------------------+

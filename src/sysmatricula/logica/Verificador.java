@@ -1,12 +1,30 @@
+//+------------------------------------------------------------------+
+//|                                                 Verificador.java |
+//|                           Copyright 2018, Carlos Bezerra Vilela. |
+//|                     https://github.com/carlosvilela/SysMatricula |
+//+------------------------------------------------------------------+
+
+//+------------------------------------------------------------------+
+//| pacote/diretório da Classe                                       |
+//+------------------------------------------------------------------+
 package sysmatricula.logica;
 
+//+------------------------------------------------------------------+
+//| Bibliotecas Necessárias                                          |
+//+------------------------------------------------------------------+
 import java.io.File;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
-public class Verificador extends LerArquivo {
+//+------------------------------------------------------------------+
+//| Classe Verificador                                           |
+//+------------------------------------------------------------------+
+public class Verificador extends LerArquivo { // Herda Classe LerArquivo
 
+//+ Método verificarArquivo
     public Boolean verificarArquivo(String arquivo) {
+
+//+ Verifica e analisar inconsistencias dos dados da matricula e dígito verificador     
         LinkedList<String> matriculaSemDV = new LinkedList<String>();
         LinkedList<String> digitoVerificador = new LinkedList<String>();
 
@@ -14,8 +32,8 @@ public class Verificador extends LerArquivo {
         matriculaSemDV = getMatriculaSemDV();
         digitoVerificador = getDigitoVerificador();
 
-        System.out.println("matriculaSemDV ->> " + matriculaSemDV.toString());
-        System.out.println("digitoVerificador ->> " + digitoVerificador.toString());
+        //System.out.println("matriculaSemDV ->> " + matriculaSemDV.toString());
+        //System.out.println("digitoVerificador ->> " + digitoVerificador.toString());
 
         for (int i = 0; i <= (matriculaSemDV.size() - 1); i++) {
 
@@ -27,8 +45,8 @@ public class Verificador extends LerArquivo {
                 setMatriculaSemDV(matriculaSemDV);
                 setDigitoVerificador(digitoVerificador);
 
-                System.out.println("==getMatriculaSemDV== >>> " + getMatriculaSemDV().toString());
-                System.out.println("==getDigitoVerificador== >>> " + getDigitoVerificador().toString());
+                //System.out.println("==getMatriculaSemDV== >>> " + getMatriculaSemDV().toString());
+                //System.out.println("==getDigitoVerificador== >>> " + getDigitoVerificador().toString());
             }
 
         }
@@ -45,3 +63,4 @@ public class Verificador extends LerArquivo {
 
     }
 }
+//+------------------------------------------------------------------+

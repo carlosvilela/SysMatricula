@@ -1,5 +1,5 @@
 //+------------------------------------------------------------------+
-//|                                                SysMatricula.java |
+//|                                                CriarArquivo.java |
 //|                           Copyright 2018, Carlos Bezerra Vilela. |
 //|                     https://github.com/carlosvilela/SysMatricula |
 //+------------------------------------------------------------------+
