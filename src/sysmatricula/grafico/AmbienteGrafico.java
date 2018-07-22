@@ -14,6 +14,7 @@ public class AmbienteGrafico extends JFrame {
     
     public LinkedList<String> matriculaPura = new LinkedList<String>();
     public LinkedList<String> digitoPuro = new LinkedList<String>();
+    public String pastaResultado;
     
 
     public AmbienteGrafico() {
@@ -62,7 +63,8 @@ public class AmbienteGrafico extends JFrame {
                 System.out.println("botao Verificar Matricula");
                 Seletor selecionar = new Seletor();
                 selecionar.selecionarPasta();
-                System.out.println(selecionar.getCaminhoPastaResultado());
+                pastaResultado = selecionar.getCaminhoPastaResultado();
+                System.out.println(pastaResultado);
 
             }
         });
@@ -73,7 +75,8 @@ public class AmbienteGrafico extends JFrame {
                 System.out.println("botao Gerar Digito Verificador");
                 Seletor selecionar = new Seletor();
                 selecionar.selecionarPasta();
-                System.out.println(selecionar.getCaminhoPastaResultado());
+                pastaResultado = selecionar.getCaminhoPastaResultado();
+                System.out.println(pastaResultado);
 
             }
         });
