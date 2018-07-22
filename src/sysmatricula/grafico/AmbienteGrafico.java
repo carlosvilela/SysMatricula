@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.util.LinkedList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import sysmatricula.grafico.*;
@@ -18,12 +19,15 @@ public class AmbienteGrafico extends JFrame {
     public LinkedList<String> matriculaPura = new LinkedList<String>();
     public LinkedList<String> digitoPuro = new LinkedList<String>();
     public LinkedList<String> matriculaAgregada = new LinkedList<String>();
+    public LinkedList<String> digitoGerado = new LinkedList<String>();
     public LinkedList<String> matriculaGerada = new LinkedList<String>();
-    public LinkedList<String> matriculaGravada = new LinkedList<String>();
     public String gravar;
     public String pastaResultado;
+    public Boolean flagBtn;
 
     public AmbienteGrafico() {
+
+        flagBtn = false;
 
         setTitle("SysMatricula - XPTO");
         setSize(640, 200);
@@ -54,20 +58,22 @@ public class AmbienteGrafico extends JFrame {
 
                 matriculaPura = arquivo.getMatriculaSemDV();
                 digitoPuro = arquivo.getDigitoVerificador();
-                
+
                 matriculaAgregada.clear();
                 gravar = "";
                 for (int i = 0; i <= (matriculaPura.size() - 1); i++) {
-                    
-                    if(digitoPuro.get(i).isEmpty()){
-                    gravar = (matriculaPura.get(i));
-                    }else{
-                    gravar = (matriculaPura.get(i)+"-"+digitoPuro.get(i));
+
+                    if (digitoPuro.get(i).isEmpty()) {
+                        gravar = (matriculaPura.get(i));
+                    } else {
+                        gravar = (matriculaPura.get(i) + "-" + digitoPuro.get(i));
                     }
                     matriculaAgregada.add(gravar);
                 }
-                
-                System.out.println("Matricula Agregada ===> "+matriculaAgregada.toString());
+
+                System.out.println("Matricula Agregada ===> " + matriculaAgregada.toString());
+
+                flagBtn = true;
 
             }
         });
@@ -76,36 +82,37 @@ public class AmbienteGrafico extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("botao Verificar Matricula");
-                Seletor selecionar = new Seletor();
-                selecionar.selecionarPasta();
-                pastaResultado = selecionar.getCaminhoPastaResultado();
-                System.out.println(pastaResultado);
 
-                CalcularDigitoVerificador calc = new CalcularDigitoVerificador();
+                if (flagBtn == true) {
+                    Seletor selecionar = new Seletor();
+                    selecionar.selecionarPasta();
+                    pastaResultado = selecionar.getCaminhoPastaResultado();
+                    System.out.println(pastaResultado);
 
-                System.out.println("getMatriculaSemDV --------- " + matriculaPura.toString());
-                digitoPuro = calc.calcularDV(matriculaPura);
-
-                System.out.println("Matricula --------- " + matriculaAgregada.toString());
-
-                String gravar;
-                for (int i = 0; i <= (matriculaAgregada.size() - 1); i++) {
-                    gravar = (matriculaPura.get(i) + "-" + digitoPuro.get(i));
-                    System.out.println("gravar -> " + gravar);
-                    matriculaGerada.add(gravar);
-                    System.out.println("Matricula Gerada -> " + matriculaGerada.toString());
-
-                    if (matriculaGerada.get(i).equals(matriculaAgregada.get(i))) {
-                        matriculaGravada.add((matriculaAgregada.get(i) + " verdadeiro"));
-                    } else {
-                        gravar = (matriculaAgregada.get(i) + " falso");
-                        System.out.println("gravar -> " + gravar);
-
-                        matriculaGravada.add(gravar);
+                    System.out.println("getMatriculaSemDV --------- " + matriculaPura.toString());
+                    
+                    CalcularDigitoVerificador calc = new CalcularDigitoVerificador();
+                    digitoGerado = calc.calcularDV(matriculaPura);
+                    
+                    System.out.println("Digito Gerado -> " + digitoGerado.toString());
+                    
+                    matriculaGerada.clear();
+                    gravar = "";
+                    for(int i=0; i<= (matriculaPura.size()-1);i++){
+                        
+                        if(digitoPuro.get(i).isEmpty()){
+                            gravar = matriculaPura.get(i)+"-"+digitoGerado.get(i);
+                            matriculaGerada.add(gravar);
+                        }
                     }
-                }
 
-                System.out.println("Matricula gerada para gravar -> " + matriculaGravada.toString());
+                    System.out.println("Matricula Gerada -> " + matriculaGerada.toString());
+                    
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERRO: O arquivo ainda não foi selecionado.\nClick no Botão Selecionar Arquivo.");
+
+                }
 
             }
         });
