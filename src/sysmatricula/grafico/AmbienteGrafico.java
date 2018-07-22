@@ -2,6 +2,7 @@ package sysmatricula.grafico;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,6 +11,10 @@ import sysmatricula.grafico.*;
 import sysmatricula.logica.*;
 
 public class AmbienteGrafico extends JFrame {
+    
+    public LinkedList<String> matriculaPura = new LinkedList<String>();
+    public LinkedList<String> digitoPuro = new LinkedList<String>();
+    
 
     public AmbienteGrafico() {
 
@@ -40,14 +45,13 @@ public class AmbienteGrafico extends JFrame {
                 Verificador arquivo = new Verificador();
                 arquivo.verificarArquivo(selecionar.getArquivoSelecionado());
                 
+                matriculaPura = arquivo.getMatriculaSemDV();
+                digitoPuro = arquivo.getDigitoVerificador();
+                
                 
                 CalcularDigitoVerificador calc = new CalcularDigitoVerificador();
                 System.out.println("getMatriculaSemDV --------- "+arquivo.getMatriculaSemDV().toString());
-                calc.calcularDV(arquivo.getMatriculaSemDV());
-                
-                Calculo calcular = new Calculo();
-                calcular.convertDecimalParaHexadecimal(14);
-                
+                calc.calcularDV(matriculaPura);
 
             }
         });

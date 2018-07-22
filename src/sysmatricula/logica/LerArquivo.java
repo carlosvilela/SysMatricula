@@ -8,28 +8,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
-public class LerArquivo {
+public class LerArquivo extends Matricula {
 
-    private LinkedList<String> matricula = new LinkedList<String>();
-    private LinkedList<String> matriculaSemDV = new LinkedList<String>();
-    private LinkedList<String> digitoVerificador = new LinkedList<String>();
     private File arquivo;
-
-    public  LinkedList<String> getMatriculaSemDV() {
-        return matriculaSemDV;
-    }
-
-    public LinkedList<String> getDigitoVerificador() {
-        return digitoVerificador;
-    }
-
-        public void setMatriculaSemDV(LinkedList<String> matriculaSemDV) {
-        this.matriculaSemDV = matriculaSemDV;
-    }
-
-    public void setDigitoVerificador(LinkedList<String> digitoVerificador) {
-        this.digitoVerificador = digitoVerificador;
-    }
 
     public String getArquivo() {
         return arquivo.getAbsolutePath();
@@ -53,15 +34,15 @@ public class LerArquivo {
                 int i;
                 i = 0;
 
-                this.matricula.add(ler.readLine());
-                while (this.matricula.get(i) != null) {
-                    this.matricula.add(ler.readLine());
+                getMatricula().add(ler.readLine());
+                while (getMatricula().get(i) != null) {
+                    getMatricula().add(ler.readLine());
 
-                    System.out.println(this.matricula.get(i));
+                    System.out.println(getMatricula().get(i));
                     i = i + 1;
                 }
 
-                this.matricula.remove(i);
+                getMatricula().remove(i);
                 arquivo.close();
 
             } else {
@@ -73,7 +54,7 @@ public class LerArquivo {
             System.out.println(e);
         }
 
-        desagregarMatricula(this.matricula);
+        desagregarMatricula(getMatricula());
     }
 
     public void desagregarMatricula(LinkedList<String> matricula) {
@@ -84,7 +65,7 @@ public class LerArquivo {
         Boolean bERR;
 
         matricula = new LinkedList<String>();
-        matricula = this.matricula;
+        matricula = getMatricula();
 
         String caracteresSemDV = "";
         String caracteresComDV = "";
@@ -253,21 +234,21 @@ public class LerArquivo {
             } else {
 
                 if (!caracteresSemDV.isEmpty() && caracteresComDV.isEmpty()) {
-                    matriculaSemDV.add(caracteresSemDV);
-                    digitoVerificador.add("");
+                    getMatriculaSemDV().add(caracteresSemDV);
+                    getDigitoVerificador().add("");
                 } else {
                     if (caracteresSemDV.isEmpty() && !caracteresComDV.isEmpty()) {
-                        matriculaSemDV.add("");
-                        digitoVerificador.add(caracteresComDV);
+                        getMatriculaSemDV().add("");
+                        getDigitoVerificador().add(caracteresComDV);
                     } else {
-                        matriculaSemDV.add(caracteresSemDV);
-                        digitoVerificador.add(caracteresComDV);
+                        getMatriculaSemDV().add(caracteresSemDV);
+                        getDigitoVerificador().add(caracteresComDV);
                     }
                 }
             }
 
-            System.out.println("matriculaSemDV[] = " + matriculaSemDV.toString());
-            System.out.println("digitoVerificador[] = " + digitoVerificador.toString());
+            System.out.println("matriculaSemDV[] = " + getMatriculaSemDV().toString());
+            System.out.println("digitoVerificador[] = " + getDigitoVerificador().toString());
 
         }
     }
