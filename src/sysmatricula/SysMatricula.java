@@ -17,7 +17,7 @@ import sysmatricula.grafico.AmbienteGrafico;
 //+------------------------------------------------------------------+
 //| Classe SysMatricula                                              |
 //+------------------------------------------------------------------+
-public class SysMatricula extends AmbienteGrafico {
+public class SysMatricula extends AmbienteGrafico { // Herda Classe AmbienteGrafico
 
 //+ Função Principal    
     public static void main(String[] args) {

@@ -28,7 +28,7 @@ import sysmatricula.logica.*;
 //+------------------------------------------------------------------+
 //| Classe AmbienteGrafico                                           |
 //+------------------------------------------------------------------+
-public class AmbienteGrafico extends JFrame {
+public class AmbienteGrafico extends JFrame { // Herda Classe JFrame
     
     
 //+ Atributos 

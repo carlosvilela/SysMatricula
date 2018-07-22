@@ -1,17 +1,34 @@
+//+------------------------------------------------------------------+
+//|                                   CalcularDigitoVerificador.java |
+//|                           Copyright 2018, Carlos Bezerra Vilela. |
+//|                     https://github.com/carlosvilela/SysMatricula |
+//+------------------------------------------------------------------+
+
+//+------------------------------------------------------------------+
+//| pacote/diretório da Classe                                       |
+//+------------------------------------------------------------------+
 package sysmatricula.logica;
 
+//+------------------------------------------------------------------+
+//| Bibliotecas Necessárias                                          |
+//+------------------------------------------------------------------+
 import java.util.LinkedList;
 
-public class CalcularDigitoVerificador extends LerArquivo {
+//+------------------------------------------------------------------+
+//| Classe CalcularDigitoVerificador                                              |
+//+------------------------------------------------------------------+
+public class CalcularDigitoVerificador extends LerArquivo { // Herda Classe LerArquivo
 
-    public Integer calcDV;
+//+ Atributos 
+    private Integer calcDV;
     private LinkedList<Integer> rascunhoDigitoVerificador = new LinkedList<Integer>();
     private LinkedList<Integer> DigitoVerificadorCalculado = new LinkedList<Integer>();
     private LinkedList<String> DigitoVerificadorConcluido = new LinkedList<String>();
     
-
+//+ Método calcularDV 
     public LinkedList<String> calcularDV(LinkedList<String> matriculaSemDV) {
 
+//+ Realiza os calculos e processos para calcular o Dígito Verificador. 
         setMatriculaSemDV(matriculaSemDV);
         System.out.println(">>>> " + getMatriculaSemDV().toString());
 
@@ -53,3 +70,4 @@ public class CalcularDigitoVerificador extends LerArquivo {
     }
 
 }
+//+------------------------------------------------------------------+
