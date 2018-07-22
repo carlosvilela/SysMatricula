@@ -41,7 +41,7 @@ public class AmbienteGrafico extends JFrame {
                 arquivo.verificarArquivo(selecionar.getArquivoSelecionado());
                 
                 
-                CalcularDigitoVerificador calc = new CalcularDigitoVerificador();
+                calcularDigitoVerificador calc = new calcularDigitoVerificador();
                 System.out.println("getMatriculaSemDV --------- "+arquivo.getMatriculaSemDV().toString());
                 calc.calcularDV(arquivo.getMatriculaSemDV());
 
