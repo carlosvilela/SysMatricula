@@ -20,7 +20,7 @@ public class AmbienteGrafico extends JFrame {
     public LinkedList<String> matriculaAgregada = new LinkedList<String>();
     public LinkedList<String> matriculaGerada = new LinkedList<String>();
     public LinkedList<String> matriculaGravada = new LinkedList<String>();
-
+    public String gravar;
     public String pastaResultado;
 
     public AmbienteGrafico() {
@@ -54,12 +54,24 @@ public class AmbienteGrafico extends JFrame {
 
                 matriculaPura = arquivo.getMatriculaSemDV();
                 digitoPuro = arquivo.getDigitoVerificador();
-                matriculaAgregada = arquivo.getMatricula();
-
+                
+                matriculaAgregada.clear();
+                gravar = "";
+                for (int i = 0; i <= (matriculaPura.size() - 1); i++) {
+                    
+                    if(digitoPuro.get(i).isEmpty()){
+                    gravar = (matriculaPura.get(i));
+                    }else{
+                    gravar = (matriculaPura.get(i)+"-"+digitoPuro.get(i));
+                    }
+                    matriculaAgregada.add(gravar);
+                }
+                
+                System.out.println("Matricula Agregada ===> "+matriculaAgregada.toString());
 
             }
         });
-            btVerificarMatricula.addActionListener(new ActionListener() {
+        btVerificarMatricula.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,32 +85,27 @@ public class AmbienteGrafico extends JFrame {
 
                 System.out.println("getMatriculaSemDV --------- " + matriculaPura.toString());
                 digitoPuro = calc.calcularDV(matriculaPura);
-                
-                System.out.println("Matricula --------- " + matriculaAgregada.toString());
-                                
 
-                
+                System.out.println("Matricula --------- " + matriculaAgregada.toString());
+
                 String gravar;
                 for (int i = 0; i <= (matriculaAgregada.size() - 1); i++) {
                     gravar = (matriculaPura.get(i) + "-" + digitoPuro.get(i));
-                        System.out.println("gravar -> "+gravar);
+                    System.out.println("gravar -> " + gravar);
                     matriculaGerada.add(gravar);
-                        System.out.println("Matricula Gerada -> "+matriculaGerada.toString());
+                    System.out.println("Matricula Gerada -> " + matriculaGerada.toString());
 
                     if (matriculaGerada.get(i).equals(matriculaAgregada.get(i))) {
                         matriculaGravada.add((matriculaAgregada.get(i) + " verdadeiro"));
                     } else {
                         gravar = (matriculaAgregada.get(i) + " falso");
-                        System.out.println("gravar -> "+gravar);
+                        System.out.println("gravar -> " + gravar);
 
                         matriculaGravada.add(gravar);
                     }
                 }
 
-               
-
-System.out.println("Matricula gerada para gravar -> "+matriculaGravada.toString());
-               
+                System.out.println("Matricula gerada para gravar -> " + matriculaGravada.toString());
 
             }
         });
