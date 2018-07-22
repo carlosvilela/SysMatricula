@@ -33,6 +33,8 @@ public class Verificador extends LerArquivo {
 
         }
 
+        JOptionPane.showMessageDialog(null, "Verificação do Arquivo Concluída:\nSiga para a próxima etapa, escolha entre\n Verificar Matricula ou Gerar Dígito Verificador");
+
         if (matriculaSemDV.size() == digitoVerificador.size()) {
             return true;
         } else {
