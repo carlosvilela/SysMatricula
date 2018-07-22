@@ -89,6 +89,32 @@ public class AmbienteGrafico extends JFrame {
                     pastaResultado = selecionar.getCaminhoPastaResultado();
                     System.out.println(pastaResultado);
 
+                    System.out.println("getMatriculaSemDV --------- " + matriculaPura.toString());
+
+                    CalcularDigitoVerificador calc = new CalcularDigitoVerificador();
+                    digitoGerado = calc.calcularDV(matriculaPura);
+
+                    System.out.println("Digito Gerado -> " + digitoGerado.toString());
+                    System.out.println("Digito Puro -> " + digitoPuro.toString());
+
+                    matriculaGerada.clear();
+                    gravar = "";
+                    for (int i = 0; i <= (matriculaPura.size() - 1); i++) {
+
+                        if (digitoPuro.get(i).equals(digitoGerado.get(i))) {
+                            gravar = matriculaPura.get(i) + "-" + digitoPuro.get(i) + " verdadeiro";
+                            matriculaGerada.add(gravar);
+                        } else {
+                            gravar = matriculaPura.get(i) + "-" + digitoPuro.get(i) + " falso";
+                            matriculaGerada.add(gravar);
+
+                        }
+                    }
+
+                    System.out.println("Matricula Gerada -> " + matriculaGerada.toString());
+
+                    CriarArquivo gravando = new CriarArquivo(pastaResultado + "matriculasVerificadas.txt", matriculaGerada);
+
                 } else {
                     JOptionPane.showMessageDialog(null, "ERRO: O arquivo ainda não foi selecionado.\nClick no Botão Selecionar Arquivo.");
 
