@@ -6,7 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import sysmatricula.grafico.Seletor;
+import sysmatricula.grafico.*;
 import sysmatricula.logica.*;
 
 public class AmbienteGrafico extends JFrame {
@@ -44,6 +44,10 @@ public class AmbienteGrafico extends JFrame {
                 CalcularDigitoVerificador calc = new CalcularDigitoVerificador();
                 System.out.println("getMatriculaSemDV --------- "+arquivo.getMatriculaSemDV().toString());
                 calc.calcularDV(arquivo.getMatriculaSemDV());
+                
+                Calculo calcular = new Calculo();
+                calcular.convertDecimalParaHexadecimal(65535);
+                
 
             }
         });
