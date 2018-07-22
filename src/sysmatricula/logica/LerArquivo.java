@@ -1,5 +1,17 @@
+//+------------------------------------------------------------------+
+//|                                                  LerArquivo.java |
+//|                           Copyright 2018, Carlos Bezerra Vilela. |
+//|                     https://github.com/carlosvilela/SysMatricula |
+//+------------------------------------------------------------------+
+
+//+------------------------------------------------------------------+
+//| pacote/diretório da Classe                                       |
+//+------------------------------------------------------------------+
 package sysmatricula.logica;
 
+//+------------------------------------------------------------------+
+//| Bibliotecas Necessárias                                          |
+//+------------------------------------------------------------------+
 import java.awt.List;
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,10 +20,15 @@ import java.io.IOException;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
-public class LerArquivo extends Matricula {
+//+------------------------------------------------------------------+
+//| Classe LerArquivo                                              |
+//+------------------------------------------------------------------+
+public class LerArquivo extends Matricula {// Herda Classe Matricula
 
+//+ Atributos 
     private File arquivo;
 
+//+ Métodos Set e Get 
     public String getArquivo() {
         return arquivo.getAbsolutePath();
     }
@@ -20,8 +37,10 @@ public class LerArquivo extends Matricula {
         this.arquivo = new File(arquivo);
     }
 
+//+ Método LerArquivoSelecionado     
     public void LerArquivoSelecionado(String arquivoSelecionado) {
 
+//+ Analisar inconsistencias dos dados no arquivo     
         setArquivo(arquivoSelecionado);
 
         try {
@@ -29,7 +48,7 @@ public class LerArquivo extends Matricula {
 
                 FileReader arquivo = new FileReader(this.arquivo);
                 BufferedReader ler = new BufferedReader(arquivo);
-                System.out.println(this.arquivo.getAbsolutePath());
+                //System.out.println(this.arquivo.getAbsolutePath());
 
                 int i;
                 i = 0;
@@ -38,7 +57,7 @@ public class LerArquivo extends Matricula {
                 while (getMatricula().get(i) != null) {
                     getMatricula().add(ler.readLine());
 
-                    System.out.println(getMatricula().get(i));
+                    //System.out.println(getMatricula().get(i));
                     i = i + 1;
                 }
 
@@ -57,8 +76,10 @@ public class LerArquivo extends Matricula {
         desagregarMatricula(getMatricula());
     }
 
+//+ Método desagregarMatricula
     public void desagregarMatricula(LinkedList<String> matricula) {
 
+//+ Foco em desagregar matrícula do dígito verificador, mais ainda analisar inconsistencias
         String dV = "-";
         Integer indexDV;
         Boolean bFlagDV;
@@ -71,9 +92,9 @@ public class LerArquivo extends Matricula {
         String caracteresComDV = "";
 
         for (int i = 0; i <= (matricula.size() - 1); i++) {
-            System.out.println(">>> " + matricula.get(i));
+            //System.out.println(">>> " + matricula.get(i));
 
-            System.out.println(">>>numChar " + matricula.get(i).length());
+            //System.out.println(">>>numChar " + matricula.get(i).length());
 
             caracteresSemDV = new String();
             caracteresComDV = new String();
@@ -82,12 +103,12 @@ public class LerArquivo extends Matricula {
             bERR = false;
 
             for (int j = 0; j <= (matricula.get(i).length() - 1); j++) {
-                System.out.println("//" + matricula.get(i).charAt(j) + "//");
+                //System.out.println("//" + matricula.get(i).charAt(j) + "//");
 
                 //Preencher matriculaSemDV
-                System.out.println("j -> " + j);
-                System.out.println("indexDV -> " + indexDV);
-                System.out.println("achou Digito Verificador; = " + bFlagDV);
+                //System.out.println("j -> " + j);
+                //System.out.println("indexDV -> " + indexDV);
+                //System.out.println("achou Digito Verificador; = " + bFlagDV);
 
                 if (bFlagDV == false) {
 
@@ -136,8 +157,8 @@ public class LerArquivo extends Matricula {
                         case ('-'):
                             indexDV = j;
                             bFlagDV = true;
-                            System.out.println("achou Digito Verificador; indexDV = " + indexDV);
-                            System.out.println("achou Digito Verificador; = " + bFlagDV);
+                            //System.out.println("achou Digito Verificador; indexDV = " + indexDV);
+                            //System.out.println("achou Digito Verificador; = " + bFlagDV);
                             break;
 
                         default:
@@ -145,7 +166,7 @@ public class LerArquivo extends Matricula {
                     }
                 } else {
 
-                    System.out.println("##### " + matricula.get(i).charAt(j));
+                    //System.out.println("##### " + matricula.get(i).charAt(j));
 
                     switch (matricula.get(i).charAt(j)) {
 
@@ -224,8 +245,8 @@ public class LerArquivo extends Matricula {
                     }
                 }
 
-                System.out.println("caracteresSemDV -> " + caracteresSemDV);
-                System.out.println("caracteresComDV -> " + caracteresComDV);
+                //System.out.println("caracteresSemDV -> " + caracteresSemDV);
+                //System.out.println("caracteresComDV -> " + caracteresComDV);
             }
 
             if (bERR == true) {
@@ -247,9 +268,10 @@ public class LerArquivo extends Matricula {
                 }
             }
 
-            System.out.println("matriculaSemDV[] = " + getMatriculaSemDV().toString());
-            System.out.println("digitoVerificador[] = " + getDigitoVerificador().toString());
+            //System.out.println("matriculaSemDV[] = " + getMatriculaSemDV().toString());
+            //System.out.println("digitoVerificador[] = " + getDigitoVerificador().toString());
 
         }
     }
 }
+//+------------------------------------------------------------------+
