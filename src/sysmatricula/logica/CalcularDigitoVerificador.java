@@ -19,6 +19,8 @@ public class CalcularDigitoVerificador extends LerArquivo {
             for (int j = 0; j <= (getMatriculaSemDV().get(i).length() - 1); j++) {
 
                 rascunhoDigitoVerificador.add(Integer.parseInt(String.valueOf(getMatriculaSemDV().get(i).charAt(j))));
+                
+                //calcDV
 
             }
 
